@@ -46,7 +46,7 @@ function App() {
         </div>
           <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa</h1>
         <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa Oto Moja Strona StartowaOto Moja Strona Startowa</h1>
-        <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa</h1>
+        <h1 className='text-9xl font-bold text-blue-500'>Oto Moja Strona Startowa</h1>
         <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa</h1>
         <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa</h1>
         <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa</h1>

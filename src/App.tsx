@@ -4,7 +4,13 @@ import DownloadCVModal from './Components/DownloadCV';
 import './App.css';
 
 function App() {
-  const name= "gfaGGSGAG";
+  const textHow= "Projekt został wykonany za pomocą biblioteki React z wykorzystaniem frameworka Tailwind CSS";
+  const titleHow="JAK?";
+
+   const textWhy= "Na początku projekt tworzyłem dla własnego rozwinięcia umiejętności w zakresie React'a, natomiast z czasem zacząłem przeobrażać to w swoją wizytówkę.";
+   const titleWhy="DLACZEGO?";
+   const textHowMany= "Całkowita praca nad projektem zajęła mi..";//coś o tym że  był tworzony po godzinach i w wolnej chwili
+   const titleHowMany="ILE?";
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -39,10 +45,10 @@ function App() {
       
       <div id="bgImage" className="min-h-screen relative top-14 items-center bg-cover justify-center " style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/bg.jpg)` }}>
 
-        <div className='flex flex-row m-10 gap-4 max-sm:flex-col'>
-        <MyCard text={name}></MyCard>
-        <MyCard/>
-        <MyCard/>
+        <div className='flex flex-row m-10 mt-14 gap-4 max-sm:flex-col'>
+        <MyCard title={titleHow} text={textHow}></MyCard>
+        <MyCard title={titleWhy} text={textWhy}></MyCard>
+        <MyCard title={titleHowMany} text={textHowMany}></MyCard>
         </div>
           <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa</h1>
         <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona Startowa Oto Moja Strona StartowaOto Moja Strona Startowa</h1>

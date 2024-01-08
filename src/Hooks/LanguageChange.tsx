@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import texts from "../assets/texts.json"
 
 type Language = 'pl' | 'en';
-type Texts = {
-    [key in Language]: string[];
-};
+
 export default function LanguageChange({language}:any){
 
     useEffect(()=>{
@@ -12,7 +10,6 @@ export default function LanguageChange({language}:any){
     },[language]);
 
     const SetLanguage =(lang:Language)=>{
-        console.log(lang);
         let langTexts=null;
         let actualLangImage=document.getElementById("actualLangImage") as HTMLImageElement;
         if(actualLangImage&&lang==="en")
@@ -27,8 +24,9 @@ export default function LanguageChange({language}:any){
         let jsonString = JSON.stringify(langTexts);
         localStorage.setItem('lang', lang);
         localStorage.setItem('textsContent', jsonString);
-
-        
+        if(language!=null &&lang!=language){
+            window.location.reload();
+        }
         
     }
 

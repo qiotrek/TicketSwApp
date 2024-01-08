@@ -1,0 +1,17 @@
+{
+    "Texts": {
+        "pl": {
+            "ProjectInfoHowTitle": "JAK?",
+            "ProjectInfoHowText": "Projekt został wykonany za pomocą biblioteki React we współpracy z frameworkiem Tailwind CSS."
+
+        },
+        "en": {
+
+            "ProjectInfoHowTitle": "HOW?",
+            "ProjectInfoHowText": "The project was created using the React library in cooperation with the Tailwind CSS framework."
+
+        }
+
+    }
+
+}

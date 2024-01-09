@@ -1,15 +1,28 @@
 {
     "Texts": {
         "pl": {
+            "AboutMe": "O mnie",
+            "MySkills": "Moje Umiejętności",
+            "ProfessionalExperience": "Doświadczenie Zawodowe",
+            "Contact": "Kontakt",
             "ProjectInfoHowTitle": "JAK?",
-            "ProjectInfoHowText": "Projekt został wykonany za pomocą biblioteki React we współpracy z frameworkiem Tailwind CSS."
-
+            "ProjectInfoHowText": "Projekt został wykonany za pomocą biblioteki React we współpracy z frameworkiem Tailwind CSS.",
+            "ProjectInfoWhyTitle": "DLACZEGO?",
+            "ProjectInfoWhyText": "Na początku projekt tworzyłem dla własnego rozwinięcia umiejętności w zakresie React'a, natomiast z czasem zacząłem przeobrażać to w swoją wizytówkę.",
+            "ProjectInfoHowMuchTitle": "ILE?",
+            "ProjectInfoHowMuchText": "Całkowita praca nad projektem zajęła mi.."
         },
         "en": {
-
+            "AboutMe": "About me",
+            "MySkills": "My skills",
+            "ProfessionalExperience": "Professional Experience",
+            "Contact": "Contact me",
             "ProjectInfoHowTitle": "HOW?",
-            "ProjectInfoHowText": "The project was created using the React library in cooperation with the Tailwind CSS framework."
-
+            "ProjectInfoHowText": "The project was created using the React library in cooperation with the Tailwind CSS framework.",
+            "ProjectInfoWhyTitle": "WHY?",
+            "ProjectInfoWhyText": "At the beginning, I created the project to develop my React skills, but over time I started to turn it into my business card.",
+            "ProjectInfoHowMuchTitle": "HOW MUCH?",
+            "ProjectInfoHowMuchText": "The entire project took me..."
         }
 
     }

@@ -33,27 +33,29 @@ export default function LanguageChange({language}:any){
     const [isHovered, setHovered] = useState(false);
     return(
 
-            <div className="my-auto "
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}>
-                <img id="actualLangImage"  className="my-auto cursor-pointer hover:opacity-70 h-8 w-8 rounded-lg" src={require('../assets/pl.svg').default} alt="" />
-                <div className="size-auto font-bold text-lg text-zinc-500">
+            <div className="fixed bottom-5 right-5 my-auto "
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}>
+
+                <div className="size-auto fixed bottom-36 right-16 font-bold text-lg  text-zinc-500">
                     {isHovered && 
-                        <div className="fixed bg-[#111d42] mx-auto  w-[5%] h-[12%] border-solid rounded-lg shadow-lg z-10 shadow-transparent justify-center content-center">
-                            <li className="flex items-center justify-between py-1 pl-4 pr-5 text-sm leading-6">
+                        <div className="fixed flex flex-col gap-2 mx-auto  w-[5%] h-[12%] border-solid rounded-lg shadow-lg z-10 shadow-transparent justify-center content-center">
+
                                 <button onClick={()=>SetLanguage("pl")}>
-                                    <img className="my-auto cursor-pointer hover:opacity-70 h-9 w-9 rounded-lg" src={require('../assets/pl.svg').default} alt="" />   
+                                    <img className="my-auto cursor-pointer hover:opacity-70 h-10 w-10 rounded-full" src={require('../assets/pl.svg').default} alt="" />   
                                 </button>                             
-                            </li>
-                            <div className="border-t w-[70%] border-gray-700"></div>
-                            <li className="flex items-center justify-between py-1 pl-4 pr-5 text-sm leading-6">
+              
+                            {/* <div className="border-t w-[70%] border-gray-700"></div> */}
+                            
                                 <button onClick={()=>SetLanguage("en")}>
-                                    <img className="my-auto cursor-pointer hover:opacity-70 h-9 w-9 rounded-lg" src={require('../assets/gb.svg').default} alt="" />   
+                                    <img className="my-auto cursor-pointer hover:opacity-70 h-10 w-10 rounded-full" src={require('../assets/gb.svg').default} alt="" />   
                                 </button>                             
-                            </li>
+                
                         </div>
                     }
                 </div>
+                <img id="actualLangImage"  className="my-auto cursor-pointer hover:opacity-70 h-10 w-10 rounded-full" src={require('../assets/pl.svg').default} alt="" />
+              
             </div>
             
     )

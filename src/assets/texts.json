@@ -10,7 +10,8 @@
             "ProjectInfoWhyTitle": "DLACZEGO?",
             "ProjectInfoWhyText": "Na początku projekt tworzyłem dla własnego rozwinięcia umiejętności w zakresie React'a, natomiast z czasem zacząłem przeobrażać to w moją własną wizytówkę.",
             "ProjectInfoHowMuchTitle": "ILE?",
-            "ProjectInfoHowMuchText": "Całkowita praca nad projektem zajęła mi.."
+            "ProjectInfoHowMuchText": "Całkowita praca nad projektem zajęła mi..",
+            "AboutProject": "O Projekcie"
         },
         "gb": {
             "AboutMe": "About me",
@@ -22,7 +23,8 @@
             "ProjectInfoWhyTitle": "WHY?",
             "ProjectInfoWhyText": "At the beginning, I created the project to develop my React skills, but over time I started to turn it into my own business card.",
             "ProjectInfoHowMuchTitle": "HOW MUCH?",
-            "ProjectInfoHowMuchText": "The entire project took me..."
+            "ProjectInfoHowMuchText": "The entire project took me...",
+            "AboutProject": "O Projekcie"
         }
 
     }

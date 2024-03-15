@@ -3,9 +3,9 @@ import DownloadCVHook from './Hooks/CVDownload';
 import LanguageChangeHook from './Hooks/LanguageChange';
 import './App.css';
 import { useEffect, useState } from 'react';
-import gmailIcon from "../assets/gmail_icon.svg";
 import { Turn as Hamburger } from 'hamburger-react'
-import Carousel from './Components/CarouselElement';
+import { Card, Carousel } from 'flowbite-react';
+
 
 function App() {
   
@@ -55,8 +55,8 @@ function App() {
           <div className="md:flex flex-col md:flex-row md:ml-auto">
           <button className="hover:scale-105 m-4 text-red-500 font-bold cursor-pointer" onClick={()=>handleClickScroll("aboutMe")}>{texts["AboutMe"]}</button>
             <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("aboutProject")}>{texts["AboutProject"]}</button>
-            <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("")}>{texts["MySkills"]}</button>
-            <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("aboutMe")}>{texts["ProfessionalExperience"]}</button>
+            <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("mySkills")}>{texts["MySkills"]}</button>
+            <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("myExperience")}>{texts["ProfessionalExperience"]}</button>
             <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("contactCard")}>{texts["Contact"]}</button>
           </div>
         </div>
@@ -65,20 +65,20 @@ function App() {
 
       
       <div id="bg" className="min-h-screen gap-64 relative top-14 items-center bg-cover justify-center " >
-      {/* O MNIE */}   
-      <div id='aboutMe' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
-          <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
-              <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">O Mnie</h1>
-            <div className="border-t border-gray-500 items-center"></div>
-            
-              <div className='flex gap-3 w-[100%] h-[100%]'>
-                <div className='bg-slate-200 w-1/3 h-100%'></div>
-                <div className='bg-slate-200 w-1/3 h-100%'></div>
-                <div className='bg-slate-200 w-1/3 h-100%'></div>
-              </div>
+        {/* O MNIE */}   
+        <div id='aboutMe' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+            <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+                <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">O Mnie</h1>
+              <div className="border-t border-gray-500 items-center"></div>
               
-          </div>
-      </div>
+                <div className='flex gap-3 w-[100%] h-[100%]'>
+                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+                </div>
+                
+            </div>
+        </div>
 
         {/* O PROJEKCIE */}
  
@@ -88,6 +88,37 @@ function App() {
               <MyCard title={texts["ProjectInfoHowMuchTitle"]} text={texts["ProjectInfoHowMuchText"]}></MyCard>
             </div>
        
+        {/* MOJE UMIEJĘTNOŚCI */}   
+        <div id='mySkills' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+            <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+                <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Moje Umiejętności</h1>
+              <div className="border-t border-gray-500 items-center"></div>
+              
+                <div className='flex gap-3 w-[100%] h-[100%]'>
+                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+                </div>
+                
+            </div>
+        </div>
+
+        {/* DOŚWIACZENIE ZAWODOWE */}   
+        <div id='myExperience' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+          <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+              <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Doświadczenie Zawodowe</h1>
+            <div className="border-t border-gray-500 items-center"></div>
+            
+              <div className='flex gap-3 w-[100%] h-[100%]'>
+                <div className='bg-slate-200 w-1/3 h-100%'> Użyć TIMELINE</div>
+                <div className='bg-slate-200 w-1/3 h-100%'></div>
+                <div className='bg-slate-200 w-1/3 h-100%'></div>
+              </div>
+              
+          </div>
+        </div>
+
+
         {/* KONTAKT */}
       
         <div id='contactCard' className="flex relative z-5 max-h-[70%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
@@ -139,17 +170,26 @@ function App() {
         </div>
        
       
-        <div className="container mx-auto">
-      <h1 className="text-3xl font-bold text-center my-8">Image Carousel</h1>
-      <Carousel data={imageData} />
+       
+
+      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+        <Carousel>
+          <Card className="max-w-sm" imgSrc="/images/blog/image-4.jpg" horizontal>
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Noteworthy technology acquisitions 2021
+            </h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+            </p>
+          </Card>
+          <img src="https://flowbite.com/docs/images/carousel/carousel-2.svg" alt="..." />
+          <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" alt="..." />
+          <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg" alt="..." />
+          <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg" alt="..." />
+        </Carousel>
       </div>
         
-            <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona StartowaOto Moja Strona StartowaOto Moja Strona Startowa</h1>
-            <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona StartowaOto Moja Strona StartowaOto Moja Strona Startowa</h1>
-            <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona StartowaOto Moja Strona StartowaOto Moja Strona Startowa</h1>
-            <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona StartowaOto Moja Strona StartowaOto Moja Strona Startowa</h1>
-            <h1 className='text-9xl font-bold text-red-500'>Oto Moja Strona StartowaOto Moja Strona StartowaOto Moja Strona Startowa</h1>
-        
+            
 
           
       </div>

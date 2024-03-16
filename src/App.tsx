@@ -4,9 +4,9 @@ import LanguageChangeHook from './Hooks/LanguageChange';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Turn as Hamburger } from 'hamburger-react'
-import { Badge, Card, Carousel, Footer } from 'flowbite-react';
+import { Badge, Card, Carousel, Footer, Timeline } from 'flowbite-react';
 import myPhoto from './assets/myPhoto.jpg';
-import { HiCheck, HiArrowCircleUp,HiMinusCircle } from 'react-icons/hi';
+import { HiCheck, HiArrowCircleUp,HiMinusCircle,HiArrowNarrowRight } from 'react-icons/hi';
 
 
 function App() {
@@ -65,8 +65,8 @@ function App() {
       
       <div id="bg" className="min-h-screen gap-64 relative top-14 items-center bg-cover justify-center " >
         {/* ABOUT */}   
-        <div id='aboutMe' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
-            <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+        <div id='aboutMe' className="flex relative z-5 max-h-[90%] min-h-[60%] flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_50px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+            <div className={`flex flex-col  gap-3 bg-[#111d42] m-8 p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
                 <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">O Mnie</h1>
               <div className="border-t border-gray-500 items-center"></div>
               
@@ -103,11 +103,11 @@ function App() {
         </div>
        
         {/* MOJE UMIEJĘTNOŚCI */}   
-        <div id='mySkills' className="flex relative z-5 max-h-[90%] min-h-[60%] flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+        <div id='mySkills' className="flex relative z-5 max-h-[90%] min-h-[60%] flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_50px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
             <div className={`flex flex-col  gap-3 bg-[#111d42] m-8 p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
                 <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Moje Umiejętności</h1>
               <div className="border-t border-gray-500 items-center"></div>
-              <Carousel>
+              <Carousel indicators={false}>
                 <div className="h-[100%] w-[70%]  flex">
                   <div className='m-auto flex flex-wrap w-[50%] gap-1'>
                     <Badge size="l" color="success" icon={HiCheck}>HTML</Badge>
@@ -165,25 +165,57 @@ function App() {
         </div>
 
         {/* DOŚWIACZENIE ZAWODOWE */}   
-        <div id='myExperience' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
-          <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
-              <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Doświadczenie Zawodowe</h1>
+        <div id='myExperience' className="flex relative z-5 max-h-[90%] min-h-[60%] flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_50px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+          <div className={`flex flex-col  gap-3 bg-[#111d42] m-8 p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+            <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Doświadczenie Zawodowe</h1>
             <div className="border-t border-gray-500 items-center"></div>
-            
-              <div className='flex gap-3 w-[100%] h-[100%]'>
-                <div className='bg-slate-200 w-1/3 h-100%'> Użyć TIMELINE</div>
-                <div className='bg-slate-200 w-1/3 h-100%'></div>
-                <div className='bg-slate-200 w-1/3 h-100%'></div>
+            <div className='flex flex-col overflow-y-scroll no-scrollbar p-2'>
+              <Timeline>
+                  <Timeline.Item>
+                    <Timeline.Point />
+                    <Timeline.Content>
+                      <Timeline.Time className='text-red-500'>February 2022</Timeline.Time>
+                      <Timeline.Title className='text-[#2e50cae1]'>Application UI code in Tailwind CSS</Timeline.Title>
+                      <Timeline.Body>
+                        Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                        E-commerce & Marketing pages.
+                      </Timeline.Body>
+                      <button color="gray">
+                        Learn More
+                        <HiArrowNarrowRight className="ml-2 h-3 w-3" />
+                      </button>
+                    </Timeline.Content>
+                  </Timeline.Item>
+                  <Timeline.Item>
+                    <Timeline.Point />
+                    <Timeline.Content>
+                      <Timeline.Time className='text-red-500'>March 2022</Timeline.Time>
+                      <Timeline.Title className='text-[#2e50cae1]'>Marketing UI design in Figma</Timeline.Title>
+                      <Timeline.Body>
+                        All of the pages and components are first designed in Figma and we keep a parity between the two versions
+                        even as we update the project.
+                      </Timeline.Body>
+                    </Timeline.Content>
+                  </Timeline.Item>
+                  <Timeline.Item>
+                    <Timeline.Point />
+                    <Timeline.Content>
+                      <Timeline.Time className='text-red-500'>April 2022</Timeline.Time>
+                      <Timeline.Title className='text-[#2e50cae1]'>E-Commerce UI code in Tailwind CSS</Timeline.Title>
+                      <Timeline.Body>
+                        Get started with dozens of web components and interactive elements built on top of Tailwind CSS.
+                      </Timeline.Body>
+                    </Timeline.Content>
+                  </Timeline.Item>
+                </Timeline>
               </div>
-              
           </div>
         </div>
 
 
-        {/* KONTAKT */}
-      
-        <div id='contactCard' className="flex relative z-5 max-h-[70%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
-          <div className={`flex flex-col gap-3 bg-[#111d42] my-auto p-5 w-[80%] h-72 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+        {/* KONTAKT */}     
+        <div id='contactCard' className="flex relative z-5 max-h-[90%] min-h-[60%] flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_50px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+          <div className={`flex flex-col gap-3 bg-[#111d42] m-8 p-5 w-[80%] h-72 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
               <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Kontakt</h1>
               <div className="border-t border-gray-500 items-center"></div>
               <div className='flex flex-row mx-auto gap-20 items-center justify-center'>

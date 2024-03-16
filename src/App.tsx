@@ -4,10 +4,16 @@ import LanguageChangeHook from './Hooks/LanguageChange';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Turn as Hamburger } from 'hamburger-react'
-import { Card, Carousel } from 'flowbite-react';
+import { Badge, Card, Carousel, Footer } from 'flowbite-react';
+import myPhoto from './assets/myPhoto.jpg';
+import { HiCheck, HiArrowCircleUp,HiMinusCircle } from 'react-icons/hi';
 
 
 function App() {
+  
+  useEffect(() => {
+    //handleClickScroll("aboutMe");
+  }, []); 
   
   let texts:  Record<string, string> = {};
   const lang = localStorage.getItem('lang')??"pl";
@@ -27,12 +33,6 @@ function App() {
         element.scrollIntoView({ behavior: 'smooth',block:'center' });
       }
     };
-    const imageData = [
-      { id: 1, image: 'https://via.placeholder.com/150' },
-      { id: 2, image: 'https://via.placeholder.com/150' },
-      { id: 3, image: 'https://via.placeholder.com/150' },
-      // Dodaj więcej danych obrazków
-    ];
   return (
     // <div className="flex flex-col overflow-hidden bg-fixed" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/bg.jpg)` }}>
     <div className="flex flex-col overflow-hidden bg-fixed bg-slate-800" >
@@ -53,8 +53,7 @@ function App() {
         {/* List of links */}
         <div className={`md:flex ${isMenuOpen ? "flex" : "hidden"} md:items-center md:w-auto w-full`}>
           <div className="md:flex flex-col md:flex-row md:ml-auto">
-          <button className="hover:scale-105 m-4 text-red-500 font-bold cursor-pointer" onClick={()=>handleClickScroll("aboutMe")}>{texts["AboutMe"]}</button>
-            <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("aboutProject")}>{texts["AboutProject"]}</button>
+          <button className="hover:scale-105  m-4 text-red-500 font-bold rounded-2xl cursor-pointer" onClick={()=>handleClickScroll("aboutMe")}><span className='p-2'>{texts["AboutMe"]}</span></button>
             <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("mySkills")}>{texts["MySkills"]}</button>
             <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("myExperience")}>{texts["ProfessionalExperience"]}</button>
             <button className="hover:scale-105 m-4 text-red-500 font-bold hover:cursor-pointer" onClick={()=>handleClickScroll("contactCard")}>{texts["Contact"]}</button>
@@ -65,42 +64,104 @@ function App() {
 
       
       <div id="bg" className="min-h-screen gap-64 relative top-14 items-center bg-cover justify-center " >
-        {/* O MNIE */}   
+        {/* ABOUT */}   
         <div id='aboutMe' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
             <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
                 <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">O Mnie</h1>
               <div className="border-t border-gray-500 items-center"></div>
               
-                <div className='flex gap-3 w-[100%] h-[100%]'>
-                  <div className='bg-slate-200 w-1/3 h-100%'></div>
-                  <div className='bg-slate-200 w-1/3 h-100%'></div>
-                  <div className='bg-slate-200 w-1/3 h-100%'></div>
-                </div>
+              <div className="h-[100%] sm:h-64 xl:h-80 2xl:h-96">
+                <Carousel slide={false}>
+                  <Card className="h-[100%] w-[70%] grow bg-slate-600 dark:bg-slate-700 flex" imgSrc={myPhoto} horizontal >
+                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <span className='text-[#111d42]'>Hej! Mam na imię</span> <span className='text-red-500'>Piotrek</span>
+                    </h5>
+                    <p className="font-normal  text-gray-300 dark:text-gray-400">
+                      Mam 25 lat i aktualnie pracuję jako <span className='text-red-500'>Full-Stack Developer</span>. Ostatnio najwięcej czasu poświęcam na programowanie <span className='text-red-500'> Aplikacji Webowych</span>.
+                    </p>
+                  </Card>
+                  <Card className="h-[100%] w-[60%] bg-slate-600 dark:bg-slate-700 flex">
+                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <span className='text-[#111d42]'>Trochę o tym projekcie!</span>
+                    </h5>
+                    <p className="font-normal  text-gray-300 dark:text-gray-400">
+                      {texts["ProjectInfoWhyText"]} {texts["ProjectInfoHowText"]} <span className='text-red-500'>{texts["ProjectInfoHowText_Framework"]}</span>
+                    </p>
+                  </Card>
+                  <Card className="h-[100%] w-[60%] bg-slate-600 dark:bg-slate-700 flex">
+                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <span className='text-[#111d42]'>Moje Zainteresowania!</span>
+                    </h5>
+                    <p className="font-normal  text-gray-300 dark:text-gray-400">
+                    
+                    </p>
+                  </Card>
+                </Carousel>
+              </div>
                 
             </div>
         </div>
-
-        {/* O PROJEKCIE */}
- 
-            <div  id='aboutProject'  className="flex relative z-5 max-h-[70%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
-              <MyCard title={texts["ProjectInfoHowTitle"]} text={texts["ProjectInfoHowText"]}></MyCard>
-              <MyCard title={texts["ProjectInfoWhyTitle"]} text={texts["ProjectInfoWhyText"]}></MyCard>
-              <MyCard title={texts["ProjectInfoHowMuchTitle"]} text={texts["ProjectInfoHowMuchText"]}></MyCard>
-            </div>
        
         {/* MOJE UMIEJĘTNOŚCI */}   
-        <div id='mySkills' className="flex relative z-5 max-h-[80%] min-h-96 flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
-            <div className={`flex flex-col  gap-3 bg-[#111d42] my-auto p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
+        <div id='mySkills' className="flex relative z-5 max-h-[90%] min-h-[60%] flex-row my-96 mt-28 bg-[#213b9be1] shadow-[0px_0px_70px_#f8c78f] border-8 border-solid border-black border-opacity-5 gap-10 justify-center content-center max-md:flex-col max-md:gap-3 ">
+            <div className={`flex flex-col  gap-3 bg-[#111d42] m-8 p-5 w-[90%] h-96 max-h-80 min-h-44 shadow-2xl border-solid rounded-2xl max-md:w-[70%] max-md:mx-auto max-md:my-8 max-md:h-56`}> 
                 <h1 className="dictionaryText size-auto font-bold mibold text-center text-zinc-500">Moje Umiejętności</h1>
               <div className="border-t border-gray-500 items-center"></div>
-              
-                <div className='flex gap-3 w-[100%] h-[100%]'>
-                  <div className='bg-slate-200 w-1/3 h-100%'></div>
-                  <div className='bg-slate-200 w-1/3 h-100%'></div>
-                  <div className='bg-slate-200 w-1/3 h-100%'></div>
+              <Carousel>
+                <div className="h-[100%] w-[70%]  flex">
+                  <div className='m-auto flex flex-wrap w-[50%] gap-1'>
+                    <Badge size="l" color="success" icon={HiCheck}>HTML</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>JS</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>TS</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>CSS</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>Tailwind</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>JQuery</Badge>
+                    <Badge size="l" color="warning" icon={HiMinusCircle}>FLUTTER</Badge>
+                    <Badge size="l" color="purple" icon={HiArrowCircleUp}>REACT</Badge>
+                  </div>
+                  <div className='m-auto w-[50%] flex justify-center items-center'>
+                    <p className='text-5xl font-bold'>
+                      <span className="bg-gradient-to-r from-[#213b9b] to-red-500 text-transparent bg-clip-text">FRONTEND</span>
+                    </p>
+                  </div>
                 </div>
-                
+                <div className="h-[100%] w-[70%] flex gap-1">
+                  <div className='m-auto flex flex-wrap w-[50%] gap-1'>
+                    <Badge size="l" color="success" icon={HiCheck}>.NET Core</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>.NET Framework</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>Entity Framework</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>REST API</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>FIRESTORE</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>SQL</Badge>
+                  </div> 
+                  <div className=' m-auto w-[50%] flex items-center justify-center'>
+                    <p className='text-5xl font-bold'>
+                      <span className="bg-gradient-to-r from-[#213b9b] to-red-500 text-transparent bg-clip-text">BACKEND</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="h-[100%] w-[70%]  flex">
+                  <div className='m-auto flex flex-wrap w-[50%] gap-1'>
+                    <Badge size="l" color="success" icon={HiCheck}>GIT</Badge>
+                    <Badge size="l" color="purple" icon={HiArrowCircleUp}>GCP</Badge>
+                    <Badge size="l" color="success" icon={HiCheck}>AppSheet</Badge>
+                    <Badge size="l" color="purple" icon={HiArrowCircleUp}>Google Script</Badge>
+                  </div>
+                  <div className=' m-auto w-[50%] flex items-center justify-center'>
+                    <p className='text-5xl font-bold'>
+                      <span className="bg-gradient-to-r from-[#213b9b] to-red-500 text-transparent bg-clip-text">INNE</span>
+                    </p>
+                  </div>
+                </div>
+              </Carousel>
+                        
+              <Footer.LinkGroup  className='bg-[#111d42] gap-1 justify-center flex '>         
+                  <Badge color="success" icon={HiCheck}>Dobrze Znane</Badge>
+                  <Badge color="warning" icon={HiMinusCircle}>Znam Podstawy</Badge>
+                  <Badge color="purple" icon={HiArrowCircleUp}>Uczę Się Aktualnie</Badge>
+              </Footer.LinkGroup>    
             </div>
+            
         </div>
 
         {/* DOŚWIACZENIE ZAWODOWE */}   
@@ -172,24 +233,11 @@ function App() {
       
        
 
-      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-        <Carousel>
-          <Card className="max-w-sm" imgSrc="/images/blog/image-4.jpg" horizontal>
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Noteworthy technology acquisitions 2021
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-            </p>
-          </Card>
-          <img src="https://flowbite.com/docs/images/carousel/carousel-2.svg" alt="..." />
-          <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" alt="..." />
-          <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg" alt="..." />
-          <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg" alt="..." />
-        </Carousel>
-      </div>
+      
         
-            
+      <div className="mb-16 h-56 sm:h-64 xl:h-80 2xl:h-96">
+       
+      </div> 
 
           
       </div>

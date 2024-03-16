@@ -6,12 +6,12 @@
             "ProfessionalExperience": "Doświadczenie Zawodowe",
             "Contact": "Kontakt",
             "ProjectInfoHowTitle": "JAK?",
-            "ProjectInfoHowText": "Projekt został wykonany za pomocą biblioteki React we współpracy z frameworkiem Tailwind CSS.",
+            "ProjectInfoHowText": "Projekt został wykonany za pomocą biblioteki React we współpracy z",
+            "ProjectInfoHowText_Framework": "frameworkiem Tailwind CSS.",
             "ProjectInfoWhyTitle": "DLACZEGO?",
             "ProjectInfoWhyText": "Na początku projekt tworzyłem dla własnego rozwinięcia umiejętności w zakresie React'a, natomiast z czasem zacząłem przeobrażać to w moją własną wizytówkę.",
             "ProjectInfoHowMuchTitle": "ILE?",
-            "ProjectInfoHowMuchText": "Całkowita praca nad projektem zajęła mi..",
-            "AboutProject": "O Projekcie"
+            "ProjectInfoHowMuchText": "Całkowita praca nad projektem zajęła mi.."
         },
         "gb": {
             "AboutMe": "About me",
@@ -19,12 +19,12 @@
             "ProfessionalExperience": "Professional Experience",
             "Contact": "Contact me",
             "ProjectInfoHowTitle": "HOW?",
-            "ProjectInfoHowText": "The project was created using the React library in cooperation with the Tailwind CSS framework.",
+            "ProjectInfoHowText": "The project was created using the React library in cooperation with the ",
+            "ProjectInfoHowText_Framework": "Tailwind CSS framework.",
             "ProjectInfoWhyTitle": "WHY?",
             "ProjectInfoWhyText": "At the beginning, I created the project to develop my React skills, but over time I started to turn it into my own business card.",
             "ProjectInfoHowMuchTitle": "HOW MUCH?",
-            "ProjectInfoHowMuchText": "The entire project took me...",
-            "AboutProject": "O Projekcie"
+            "ProjectInfoHowMuchText": "The entire project took me..."
         }
 
     }

@@ -1,4 +1,3 @@
-import MyCard from './Components/CustomCard';
 import DownloadCVHook from './Hooks/CVDownload';
 import LanguageChangeHook from './Hooks/LanguageChange';
 import './App.css';
@@ -228,7 +227,7 @@ function App() {
                     <span className='text-red-500 font-bold'>Linkedin</span>
                   }
                   {  isLinkedinHovered &&         
-                    <span className='text-red-500 font-bold'><a href='https://www.linkedin.com/in/piotr-płaziński-2178a917b/' target='_blank'>Przejdź do profilu</a></span>
+                    <span className='text-red-500 font-bold'><a href='https://www.linkedin.com/in/piotr-płaziński-2178a917b/' target='_blank' rel="noopener noreferrer">Przejdź do profilu</a></span>
                   }
                 </div>
                 <div id="mail" className='w-[30%] p-5 grow text-center'>

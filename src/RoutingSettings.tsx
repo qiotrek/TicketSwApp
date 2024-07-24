@@ -1,6 +1,11 @@
 
+import AdminPanel from "./Pages/AdminPanel";
+import Advertisements from "./Pages/Advertisements";
+import Contact from "./Pages/Contact";
+import EventDetails from "./Pages/EventDetails";
 import Events from "./Pages/Events";
 import HomeScreen from "./Pages/HomeScreen";
+import MyAccount from "./Pages/MyAccount";
 
 export const RoutingSettings: Routing[] = [
     {
@@ -31,27 +36,76 @@ export const RoutingSettings: Routing[] = [
                     "Admin"
                 ],
                 Component: Events
+            },
+            {
+                label: "EventDetails",
+                path: "/EventDetails",
+                roles: [
+                    "User",
+                    "Admin"
+                ],
+                editableRoles: [
+                    "User",
+                    "Admin"
+                ],
+                Component: EventDetails
+            },
+            {
+                label: "Contact",
+                path: "/Contact",
+                roles: [
+                    "User",
+                    "Admin"
+                ],
+                editableRoles: [
+                    "User",
+                    "Admin"
+                ],
+                Component: Contact
+            },
+            {
+                label: "Advertisements",
+                path: "/Advertisements",
+                roles: [
+                    "User",
+                    "Admin"
+                ],
+                editableRoles: [
+                    "User",
+                    "Admin"
+                ],
+                Component: Advertisements
+            },
+            {
+                label: "MyAccount",
+                path: "/MyAccount",
+                roles: [
+                    "User",
+                    "Admin"
+                ],
+                editableRoles: [
+                    "User",
+                    "Admin"
+                ],
+                Component: MyAccount
             }
         ]
     },
-    // {
-    //     headerName: "Admin",
-    //     children: [
-    //         {
-    //             label: "Taryfikacja",
-    //             path: "/CustomsAgency/Tariff",
-    //             roles: [
-    //                 "CustomsAgency",
-    //                 "Admin",
-    //                 "Coordinator"
-    //             ],
-    //             editableRoles: [
-    //                 "CustomsAgency",
-    //                 "Admin"
-    //             ],
-    //             Component: ManageTariff
-    //         }
-    //     ]
-    // }
+    {
+        headerName: "Admin",
+        children: [
+            {
+                label: "AdminPanel",
+                path: "/AdminPanel",
+                roles: [
+                    "Admin",
+                ],
+                editableRoles: [
+                    "Admin"
+                ],
+                Component: AdminPanel
+            }
+        ]
+    }
 
 ]

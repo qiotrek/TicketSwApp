@@ -31,12 +31,12 @@ export default function AdminPanel()
     }
    
     const handleAccept = (id: string) => {
-        console.log(`Akceptuj: ${id}`);
+        //console.log(`Akceptuj: ${id}`);
         const requestBody = {
             id: id
         };
     
-        makeRequestPut('/Admin/Accept',  
+        makeRequestPut(`/Admin/Accept?id=${id}`,  
             user?.accessToken as string,
             requestBody,  
             (error, response) => {
@@ -61,7 +61,7 @@ export default function AdminPanel()
             id: id
         };
     
-        makeRequestPut('/Admin/Reject',  
+    makeRequestPut(`/Admin/Reject?id=${id}`,  
             user?.accessToken as string,
             requestBody,  
             (error, response) => {

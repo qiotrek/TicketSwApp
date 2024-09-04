@@ -23,7 +23,7 @@ export default function HomeScreen() {
       const stopSearchingDate = new Date();
 
       startSearchingDate.setDate(currentDate.getDate() + 7);
-      stopSearchingDate.setDate(currentDate.getDate() + 14);
+      stopSearchingDate.setDate(currentDate.getDate() + 30);
 
       try {
         const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events?apikey=25WSDviZs0G8VqZFpMioycIKFcDqMlTA&locale=pl-pl&startDateTime=${getFormattedDate(startSearchingDate)}&endDateTime=${getFormattedDate(stopSearchingDate)}&countryCode=PL`);

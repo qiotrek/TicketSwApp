@@ -50,3 +50,11 @@ interface NavigationContextType {
 interface NavigationContextProps {
     children: ReactNode;
 }
+
+interface Offer {
+    id: number;
+    sector: string;
+    place: string;
+    createUser: string;
+    intrestedOfferts: strig[];
+  }

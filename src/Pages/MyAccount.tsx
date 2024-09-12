@@ -14,7 +14,6 @@ export default function MyAccount() {
   ]);
 
   useEffect(() => {
-
     makeRequestGet(`/AdminPanel/MyOfferts`,
         user?.accessToken as string,
         (error, data) => {
@@ -25,7 +24,7 @@ export default function MyAccount() {
             setOffers(data);
         }
       );
-  });
+  }, [user]); 
 
 
   // Funkcja do zamykania powiadomień

@@ -1,6 +1,12 @@
 type Callback = (error: any, data: any) => void;
 
-async function makeHttpRequest(method: string, endpoint: string, userToken: string, bodyObject: object | null, callback: Callback): Promise<void> {
+async function makeHttpRequest(
+  method: string,
+  endpoint: string,
+  userToken: string,
+  bodyObject: object | null,
+  callback: Callback
+): Promise<void> {
   try {
     if (!userToken) {
       throw new Error("Brak dostępu do wykonania requesta");
@@ -17,27 +23,27 @@ async function makeHttpRequest(method: string, endpoint: string, userToken: stri
 
     const response = await fetch(process.env.REACT_APP_API_URL + endpoint, requestOptions);
 
-    if (!response.ok) {
-      if (response.status === 403) {
-        throw new Error('Unauthorized ' + response.status);
-      }
+    const contentType = response.headers.get("Content-Type") || "";
+    let responseData: any;
 
-      if (response.status === 400) {
-        throw new Error(await response.text());
-      }
-
-      throw new Error('Network response was not ok: ' + response.status);
-    }
-    if (method === 'DELETE') {
-      const data = await response.text();
-      callback(false, data);
+    // Pobieranie danych odpowiedzi w zależności od typu odpowiedzi
+    if (contentType.includes("application/json")) {
+      responseData = await response.json();
     } else {
-      const data = await response.json();
-      callback(false, data);
+      responseData = await response.text();
     }
+
+    if (!response.ok) {
+      // Bezpośrednie przekazanie statusu i odpowiedzi błędu do callbacka
+      callback({ status: response.status, message: responseData }, null);
+      return;
+    }
+
+    // Jeśli żądanie zakończyło się powodzeniem, przekaż dane do callbacka
+    callback(null, responseData);
   } catch (error: any) {
     console.error(error);
-    callback(error, null);
+    callback({ message: error.message }, null);
   }
 }
 
@@ -56,6 +62,7 @@ export function makeRequestPut(endpoint: string, token: string, bodyObject: obje
 export function makeRequestPatch(endpoint: string, token: string, bodyObject: object, callback: Callback): void {
   makeHttpRequest('PATCH', endpoint, token, bodyObject, callback);
 }
+
 export function makeRequestPost(endpoint: string, token: string, bodyObject: object, callback: Callback): void {
   makeHttpRequest('POST', endpoint, token, bodyObject, callback);
 }

@@ -22,6 +22,10 @@ function showLoadingMessage(message: string) {
     return id;
 }
 
+function hideLoadingMessage(toastId: Id) {
+    toast.dismiss(toastId);
+}
+
 function resolveSuccessLoadingMessage(id: Id, message: string) {
     return toast.update(id, {
         render: message,
@@ -42,4 +46,4 @@ function resolveErrorLoadingMessage(id: Id, message: string) {
     });
 }
 
-export { showErrorMessage, showSuccessMessage, showLoadingMessage, resolveSuccessLoadingMessage, resolveErrorLoadingMessage }
+export { showErrorMessage, showSuccessMessage, showLoadingMessage,hideLoadingMessage, resolveSuccessLoadingMessage, resolveErrorLoadingMessage }

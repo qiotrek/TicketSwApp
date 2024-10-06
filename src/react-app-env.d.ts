@@ -66,3 +66,8 @@ interface Offer {
     createDate: Date;
     url: string;
 }
+ interface IProblemsAndQuestionsModel {
+    title: string;
+    message: string;
+    answer: string|null;
+}

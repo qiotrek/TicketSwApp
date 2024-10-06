@@ -9,7 +9,7 @@ export default function MyAccount() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
-    makeRequestGet(`/AdminPanel/MyOfferts`,
+    makeRequestGet(`/UserPanel/MyOfferts`,
         user?.accessToken as string,
         (error, data) => {
             if (error) {
@@ -20,7 +20,7 @@ export default function MyAccount() {
         }
       );
 
-      makeRequestGet(`/AdminPanel/MyNotifications`,
+      makeRequestGet(`/UserPanel/MyNotifications`,
         user?.accessToken as string,
         (error, data) => {
             if (error) {
@@ -34,7 +34,7 @@ export default function MyAccount() {
 
 
   const closeNotification = (id:string) => {
-    makeRequestDelete(`/AdminPanel/MyNotifications?id=${id}`,
+    makeRequestDelete(`/UserPanel/MyNotifications?id=${id}`,
       user?.accessToken as string,
       (error, data) => {
           if (error) {

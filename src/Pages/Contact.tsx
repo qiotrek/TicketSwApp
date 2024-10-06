@@ -19,15 +19,9 @@ export default function Contact() {
             return;
         }
 
-        const payload :IProblemsAndQuestionsModel = {
-            title: subject,
-            message: message,
-            answer:null
-        };
-
-        makeRequestPut(`/UserPanel/Contact`, 
+        makeRequestPut(`/UserPanel/Contact?title=${subject}&&message=${message}`, 
             user?.accessToken as string,
-            payload,
+            {},
             (error, data) => {
                 if (error) {
                     showErrorMessage("Wystąpił błąd: " + error.message);
@@ -101,7 +95,7 @@ export default function Contact() {
                 </form>
 
                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <a href="mailto:ticketswapp@mail.com" className="hover:underline">ticketswapp@mail.com</a>
+                    <a href="mailto:ticketswapp@mail.com" type="_blank" className="hover:underline">ticketswapp@mail.com</a>
                 </p>
             </div>
         </div>

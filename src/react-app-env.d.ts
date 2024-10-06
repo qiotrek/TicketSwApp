@@ -56,5 +56,13 @@ interface Offer {
     sector: string;
     place: string;
     createUser: string;
-    intrestedOfferts: strig[];
+    intrestedOfferts: string[];
   }
+
+ interface Notification {
+    id: string;
+    title: string;
+    message: string;
+    createDate: Date;
+    url: string;
+}

@@ -26,7 +26,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const logout = () => {
         setUser(null);
         removeItem("user");
-        removeItem('shipowners')
     };
 
     const contextValue: AuthContextProps = {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { makeRequestGet, makeRequestPost } from "../Hooks/makeRequest";
+import { makeRequestGet, makeRequestPatch, makeRequestPost } from "../Hooks/makeRequest";
 import { useAuth } from "../context/AuthContext";
 import { showErrorMessage, showSuccessMessage } from "../Hooks/useAlert";
 import { ActiveAction } from "../context/Interfaces";
@@ -26,7 +26,7 @@ export default function Advertisements() {
         );
 
         // Pobierz ulubione wydarzenia użytkownika
-        makeRequestGet(`/Favorites/GetUserFavorites`, 
+        makeRequestGet(`/ActiveActions/UserFavorites`, 
             user?.accessToken as string,
             (error, favoriteIds: string[]) => {
                 if (error) {
@@ -38,13 +38,14 @@ export default function Advertisements() {
         );
     }, [user?.accessToken]);
 
-    // Funkcja do obsługi dodawania/usuwania z ulubionych
     const handleFavoriteClick = (actionId: string) => {
         const isFavorite = favorites.includes(actionId);
-        const endpoint = isFavorite ? '/Favorites/Remove' : '/Favorites/Add';
-        const requestData = { actionId }; // Dla prostoty zakładam, że to id wydarzenia wystarczy
+        const endpoint =  '/ActiveActions/UserFavorites?actionId='+actionId;
+        const requestData = {};
 
-        makeRequestPost(endpoint, user?.accessToken as string, requestData, (error, response) => {
+        makeRequestPatch(endpoint,
+             user?.accessToken as string,
+              requestData, (error, response) => {
             if (error) {
                 showErrorMessage("Wystąpił błąd podczas aktualizacji ulubionych: " + error.message);
                 return;
@@ -67,12 +68,16 @@ export default function Advertisements() {
                             {/* Przycisk serca */}
                             <button
                                 onClick={() => handleFavoriteClick(action.id)}
-                                className={`absolute top-2 right-2 text-3xl transition ${
+                                className={`absolute top-2 right-2 transition ${
                                     isFavorite ? "text-red-500" : "text-gray-500"
                                 }`}
                             >
                                 {/* Ikona serca */}
-                                {isFavorite ? '❤️' : '🤍'}
+                                <i
+                                    className={`${
+                                        isFavorite ? "fa fa-heart" : "far fa-heart"
+                                    } w-8 h-6 fa-2x transition-colors duration-200 ease-in-out hover:text-red-500 hover:fill-current`}
+                                ></i>
                             </button>
 
                             {/* Obrazek wydarzenia */}
@@ -85,18 +90,18 @@ export default function Advertisements() {
                                 />
                             </a>
 
-                            <div className="p-5 pb-16 flex flex-col justify-between h-full">
+                            <div className="p-5 pb-16">
                                 <a href="#">
                                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                         {action.name}
                                     </h5>
                                 </a>
-
-                                <div className="mb-4 mt-auto">
-                                    <p className="font-normal text-gray-700 dark:text-gray-400">
-                                        Ilość ofert: {action.offerts.length}
-                                    </p>
-                                </div>
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    Data wydarzenia: {action.eventDate ? new Date(action.eventDate).toLocaleDateString() : "TBA"}
+                                </p>
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    Ilość ofert: {action.offerts.length}
+                                </p>
                             </div>
 
                             {/* Przycisk Sprawdź w prawym dolnym rogu */}

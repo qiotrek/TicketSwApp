@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { makeRequestDelete, makeRequestGet } from "../Hooks/makeRequest";
+import { makeRequestDelete, makeRequestGet, makeRequestPatch, makeRequestPost } from "../Hooks/makeRequest";
 import { useAuth } from "../context/AuthContext";
-import { showErrorMessage } from "../Hooks/useAlert";
+import { showErrorMessage, showSuccessMessage } from "../Hooks/useAlert";
+import { ActiveAction } from "../context/Interfaces";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MyAccount() {
   const { user } = useAuth();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [notifications, setNotifications] = useState<Notification[]>([]);
-
+  const [favActions, setFavActions] = useState<ActiveAction[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]); // Stan ulubionych wydarzeń
+  const navigate = useNavigate();
+  
+  const defaultImage = "https://via.placeholder.com/300x169.png?text=No+Image";
   useEffect(() => {
     makeRequestGet(
       `/UserPanel/MyOfferts`,
@@ -32,7 +38,51 @@ export default function MyAccount() {
         setNotifications(data);
       }
     );
+
+    makeRequestGet(`/ActiveActions/UserFavorites`, 
+      user?.accessToken as string,
+      (error, actionIds: string[]) => {
+          if (error) {
+              showErrorMessage("Wystąpił błąd podczas pobierania ulubionych: " + error.message);
+              return;
+          }
+          makeRequestPost(`/ActiveActions/GetActionsList`,
+            user?.accessToken as string,
+            actionIds,
+            (error, data: ActiveAction[]) => {
+                if (error) {
+                    showErrorMessage("Wystąpił błąd: " + error.message);
+                    return;
+                }
+                setFavorites(actionIds);
+                setFavActions(data);
+            }
+        );
+      }
+  );
   }, [user]);
+
+
+  const handleFavoriteClick = (actionId: string) => {
+    const isFavorite = favorites.includes(actionId);
+    const endpoint =  '/ActiveActions/UserFavorites?actionId='+actionId;
+    const requestData = {};
+
+    makeRequestPatch(endpoint,
+         user?.accessToken as string,
+          requestData, (error, response) => {
+        if (error) {
+            showErrorMessage("Wystąpił błąd podczas aktualizacji ulubionych: " + error.message);
+            return;
+        }
+        // Aktualizuj stan ulubionych
+        setFavorites(prevFavorites => 
+            isFavorite ? prevFavorites.filter(id => id !== actionId) : [...prevFavorites, actionId]
+        );
+        setFavActions((prevFavActions) => prevFavActions.filter((action) => action.id !== actionId));
+        showSuccessMessage(isFavorite ? "Wydarzenie zostało usunięte z ulubionych" : "Wydarzenie zostało dodane do ulubionych");
+    });
+};
 
   const closeNotification = (id: string) => {
     makeRequestDelete(
@@ -83,14 +133,51 @@ export default function MyAccount() {
       {/* Sekcja z ulubionymi akcjami */}
       <div className="w-1/3 p-4">
         <h2 className="text-xl font-bold mb-4">Ulubione wydarzenia</h2>
-        <ul className="list-disc list-inside">
-          {offers.map((offer, index) => (
-            <li key={offer.id} className="mb-2">
-              {offer.id}
-            </li>
-          ))}
-        </ul>
+        {favActions.length === 0 ? (
+          <p className="text-gray-500">Brak ulubionych wydarzeń.</p>
+        ) : (
+          <div className="flex flex-col space-y-4">
+            {favActions.map((action) => (
+              <div
+                key={action.id}
+                onClick={() => navigate(`/EventDetails?id=${action.id}`)} // Navigate to details on card click
+                className="relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
+              >
+                {/* Heart button to toggle favorite status */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleFavoriteClick(action.id);
+                  }}
+                  className="absolute top-2 right-2 transition text-red-500"
+                >
+                  <i className="fa fa-heart w-8 h-6 fa-2x transition-colors duration-200 ease-in-out hover:text-red-500 hover:fill-current"></i>
+                </button>
+
+                {/* Image and action content */}
+                <img
+                  className="rounded-t-lg object-cover w-full h-48"
+                  src={action.img || defaultImage}
+                  alt={action.name}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = defaultImage;
+                  }}
+                />
+                <div className="p-5 pb-16">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{action.name}</h5>
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Data wydarzenia: {action.eventDate ? new Date(action.eventDate).toLocaleDateString() : "TBA"}
+                  </p>
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Ilość ofert: {action.offerts.length}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
       {/* Sekcja z powiadomieniami */}
       <div className="w-1/3 p-4">
         <h2 className="text-xl font-bold mb-4">Aktualne Powiadomienia</h2>

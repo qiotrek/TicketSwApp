@@ -4,6 +4,7 @@ export interface OffertModel {
     place: string;
     createUser: string;
     intrestedUsers: string[];
+    intrestedOfferts:string[];
 }
 
 export enum ActionStatus {

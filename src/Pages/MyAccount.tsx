@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { makeRequestDelete, makeRequestGet, makeRequestPatch, makeRequestPost } from "../Hooks/makeRequest";
 import { useAuth } from "../context/AuthContext";
 import { showErrorMessage, showSuccessMessage } from "../Hooks/useAlert";
-import { ActiveAction } from "../context/Interfaces";
+import { ActiveAction, OffertModel } from "../context/Interfaces";
 import { Link, useNavigate } from "react-router-dom";
+import Modal from "../Modals/Modal";
 
 export default function MyAccount() {
   const { user } = useAuth();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [favActions, setFavActions] = useState<ActiveAction[]>([]);
-  const [favorites, setFavorites] = useState<string[]>([]); // Stan ulubionych wydarzeń
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [showOffertsModal,setShowOffertsModal] =useState<boolean>(false);
+  const [offersToSwap,setOffersToSwap] =useState<OffertModel[]>([]);
   const navigate = useNavigate();
   
   const defaultImage = "https://via.placeholder.com/300x169.png?text=No+Image";
@@ -98,10 +101,42 @@ export default function MyAccount() {
     );
   };
 
-  function showOffertSwapPropositions() {
-    // pobranie zgoszonych ofert i danie mozliwosci wyboru z ktra robimy swap(Otwarcie modala)
-  }
 
+  const actionBar = (
+   <div></div>
+  );
+
+  const addActionModal =(
+
+    <Modal 
+    onClose={()=> setShowOffertsModal(false)}
+    actionBar={actionBar}
+    modalWidthClass="max-w-xl"
+    >
+      <div className="flex mb-6">
+          <div className="mr-4 flex-1">
+          {offersToSwap.map((offert: OffertModel) => (
+                    <div key={offert.id} onClick={()=>{}} className="cursor-pointer p-3 border w-full border-gray-200 rounded-lg bg-gray-100 dark:bg-gray-700">
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">Sektor: {offert.sector}</p>
+                      <p className="text-sm text-gray-900 dark:text-white">Miejsce: {offert.place}</p>
+                      <p className="text-sm text-gray-900 dark:text-white">Propozycje: {offert?.intrestedOfferts.length||0}</p>
+                    </div>
+                  ))}
+          </div>
+        </div>
+    </Modal>
+  );
+  
+  function showOffertsToSwap()
+  {
+
+    //pobrac oferty do zamiany i wrzucić w offersToSwap
+    //wyswietalnie zrobione
+    //dodac wybór i zatwierdzenie zamiany 
+    setShowOffertsModal(true);
+
+  }
+  
   return (
     <div className="mt-20 flex">
       {/* Sekcja z listą ofert */}
@@ -112,11 +147,11 @@ export default function MyAccount() {
             <li key={offer.id} className="pb-3 sm:pb-4">
               <div
                 className="flex items-center space-x-4 rtl:space-x-reverse cursor-pointer"
-                onClick={() => showOffertSwapPropositions()}
+                onClick={()=>showOffertsToSwap()}
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    Nazwa wydarzenia
+                  <p id={offer.eventId} className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    {offer.eventName}
                   </p>
                   <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                     Oferty do zamiany: {offer.intrestedOfferts.filter(x => x).length}
@@ -250,6 +285,7 @@ export default function MyAccount() {
           })}
         </ul>
       </div>
+      {showOffertsModal && addActionModal}
     </div>
   );
 }

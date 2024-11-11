@@ -41,9 +41,11 @@ export default function Navbar() {
               <li>
                 <a href="/MyAccount" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Mój Profil</a>
               </li>
+              {user?.role=="Admin"&&
               <li>
                 <a href="/AdminPanel" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin Panel</a>
               </li>
+              }
               <li>
                 <a href="#" onClick={logout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Wyloguj</a>
               </li>

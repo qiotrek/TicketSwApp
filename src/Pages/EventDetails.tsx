@@ -43,7 +43,7 @@ export default function EventDetails() {
 
       fetchEventDetails();
 
-      makeRequestGet(`/NewActionsPropositions/IsRequested?id=${id}`,  // Adjusted endpoint
+      makeRequestGet(`/NewActionsPropositions/IsRequested?id=${id}`,  
         user?.accessToken as string,
         (error, data) => {
             if (error) {
@@ -54,7 +54,7 @@ export default function EventDetails() {
         }
       );
 
-      makeRequestGet(`/ActiveActions/GetAction?id=${id}`,  // Adjusted endpoint
+      makeRequestGet(`/ActiveActions/GetAction?id=${id}`, 
         user?.accessToken as string,
         (error, data:ActiveAction) => {
             if (error) {
@@ -357,7 +357,7 @@ const addOffertPropositionModal =(
                     <div key={offert.id} onClick={()=>addOffertPropositionSet(offert.id)} className="cursor-pointer p-3 border w-full border-gray-200 rounded-lg bg-gray-100 dark:bg-gray-700">
                       <p className="text-sm font-semibold text-gray-900 dark:text-white">Sektor: {offert.sector}</p>
                       <p className="text-sm text-gray-900 dark:text-white">Miejsce: {offert.place}</p>
-                      <p className="text-sm text-gray-900 dark:text-white">Propozycje: {offert.intrestedUsers?.length}</p>
+                      <p className="text-sm text-gray-900 dark:text-white">Propozycje: {offert?.intrestedOfferts.length||0}</p>
                     </div>
                   ))}
                   <button id="addOffert"  onClick={()=>setShowModal(true)} type="button" className="w-40 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dodaj</button>

@@ -53,6 +53,8 @@ interface NavigationContextProps {
 
 interface Offer {
     id: number;
+    eventId:string;
+    eventName:string;
     sector: string;
     place: string;
     createUser: string;

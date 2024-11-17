@@ -307,11 +307,11 @@ const addOffertPropositionModal =(
           {/* <img classNameName="mx-auto mt-6 h-auto max-w-xl rounded-lg" src={eventDetails.images[1].url} alt={eventDetails.name}/> */}
 
           <div className="w-full max-w-2xl mx-auto mt-10 max-h-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img
-              className="p-8 rounded-lg"
-              src={eventDetails.images[1].url}
-              alt={eventDetails.name}
-            />
+          <img
+            className="p-8 rounded-lg w-full object-cover mx-auto"
+            src={eventDetails.images[1]?.url || ""}
+            alt={eventDetails.name}
+          />
 
             <div className="px-5 pb-5">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -320,10 +320,11 @@ const addOffertPropositionModal =(
               </h5>
 
               <div className="flex items-center mt-4 justify-between">
-                <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                  {eventDetails.priceRanges[0].min} -{" "}
-                  {eventDetails.priceRanges[0].max} PLN
-                </span>
+              <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                {eventDetails.priceRanges && eventDetails.priceRanges[0]
+                  ? `${eventDetails.priceRanges[0].min} - ${eventDetails.priceRanges[0].max} PLN`
+                  : "Brak danych na temat ceny"}
+              </span>
                 <a
                   href={eventDetails.url}
                   target="_blank"

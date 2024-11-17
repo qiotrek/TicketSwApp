@@ -70,13 +70,19 @@ export default function AdminPanel() {
           showErrorMessage("Wystąpił błąd: " + error.message);
           return;
         }
-        response
-          ? showSuccessMessage("Zgłoszenie zostało zaakceptowane")
-          : showErrorMessage("Coś poszło nie tak! Spróbuj ponownie");
+        if (response) {
+          showSuccessMessage("Zgłoszenie zostało zaakceptowane");
+          // Filter out the accepted proposition from the list
+          setPropositions((prevPropositions) =>
+            prevPropositions.filter((proposition) => proposition.id !== id)
+          );
+        } else {
+          showErrorMessage("Coś poszło nie tak! Spróbuj ponownie");
+        }
       }
     );
   };
-
+  
   const handleReject = (id: string) => {
     const requestBody = { id };
     makeRequestPut(
@@ -88,9 +94,15 @@ export default function AdminPanel() {
           showErrorMessage("Wystąpił błąd: " + error.message);
           return;
         }
-        response
-          ? showSuccessMessage("Zgłoszenie zostało odrzucone")
-          : showErrorMessage("Coś poszło nie tak! Spróbuj ponownie");
+        if (response) {
+          showSuccessMessage("Zgłoszenie zostało odrzucone");
+          // Filter out the rejected proposition from the list
+          setPropositions((prevPropositions) =>
+            prevPropositions.filter((proposition) => proposition.id !== id)
+          );
+        } else {
+          showErrorMessage("Coś poszło nie tak! Spróbuj ponownie");
+        }
       }
     );
   };

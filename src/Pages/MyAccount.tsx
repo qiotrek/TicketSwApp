@@ -91,12 +91,14 @@ export default function MyAccount() {
     makeRequestDelete(
       `/UserPanel/MyNotifications?id=${id}`,
       user?.accessToken as string,
-      (error, data) => {
+      (error) => {
         if (error) {
           showErrorMessage("Wystąpił błąd: " + error.message);
           return;
         }
-        setNotifications(data);
+        setNotifications((prevNotifications) => 
+          prevNotifications.filter((notification) => notification.id !== id)
+        );
       }
     );
   };
@@ -127,13 +129,22 @@ export default function MyAccount() {
     </Modal>
   );
   
-  function showOffertsToSwap()
+  function showOffertsToSwap(mainOffertId:string)
   {
-
-    //pobrac oferty do zamiany i wrzucić w offersToSwap
-    //wyswietalnie zrobione
-    //dodac wybór i zatwierdzenie zamiany 
-    setShowOffertsModal(true);
+    makeRequestGet(`/ActiveActions/Offert/${mainOffertId}`, 
+      user?.accessToken as string,
+      (error, offerts: OffertModel[]) => {
+          if (error) {
+              showErrorMessage("Wystąpił błąd podczas pobierania ulubionych: " + error.message);
+              return;
+          }
+          if(offerts)
+          {
+            setOffersToSwap(offerts);
+            setShowOffertsModal(true);
+          }
+          
+      });
 
   }
   
@@ -147,7 +158,7 @@ export default function MyAccount() {
             <li key={offer.id} className="pb-3 sm:pb-4">
               <div
                 className="flex items-center space-x-4 rtl:space-x-reverse cursor-pointer"
-                onClick={()=>showOffertsToSwap()}
+                onClick={()=>showOffertsToSwap(offer.id.toString())}
               >
                 <div className="flex-1 min-w-0">
                   <p id={offer.eventId} className="text-sm font-medium text-gray-900 truncate dark:text-white">

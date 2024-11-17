@@ -117,11 +117,11 @@ export default function MyAccount() {
     >
       <div className="flex mb-6">
           <div className="mr-4 flex-1">
+          <h2 className="font-bold mb-3">Wybierz na które z tych miejsc chcesz się wymienić</h2>
           {offersToSwap.map((offert: OffertModel) => (
-                    <div key={offert.id} onClick={()=>{}} className="cursor-pointer p-3 border w-full border-gray-200 rounded-lg bg-gray-100 dark:bg-gray-700">
+                    <div key={offert.id} onClick={()=>{}} className="cursor-pointer p-3 mb-3 border w-full border-gray-200 rounded-lg bg-gray-100 dark:bg-gray-700">
                       <p className="text-sm font-semibold text-gray-900 dark:text-white">Sektor: {offert.sector}</p>
                       <p className="text-sm text-gray-900 dark:text-white">Miejsce: {offert.place}</p>
-                      <p className="text-sm text-gray-900 dark:text-white">Propozycje: {offert?.intrestedOfferts.length||0}</p>
                     </div>
                   ))}
           </div>
